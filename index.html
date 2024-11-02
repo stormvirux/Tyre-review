@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tire Comparison</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .chart-container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        select, .tire-selector {
+            margin: 10px 0;
+            padding: 5px;
+        }
+        .tire-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .tire-checkbox {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tire Comparison</h1>
+    <div class="chart-container">
+        <h2>Bar Chart Comparison</h2>
+        <select id="chartType">
+            <option value="Final Score">Final Score</option>
+            <option value="Ice">Ice</option>
+            <option value="Snow">Snow</option>
+            <option value="Wet">Wet</option>
+            <option value="Dry">Dry</option>
+            <option value="Comfort">Comfort</option>
+            <option value="Stability">Stability</option>
+            <option value="Fuel Efficiency">Fuel Efficiency</option>
+        </select>
+        <canvas id="tireChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <h2>Radar Chart Comparison</h2>
+        <div class="tire-selector" id="tireSelector"></div>
+        <canvas id="radarChart"></canvas>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
