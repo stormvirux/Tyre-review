@@ -36,7 +36,55 @@ function createTireSelector() {
 }
 
 function createBarChart(dataType) {
-    // ... (keep the existing createBarChart function as is)
+    const ctx = document.getElementById('tireChart').getContext('2d');
+    const studdedLabels = studdedTires.map(tire => tire.Tyre);
+    const nonStuddedLabels = nonStuddedTires.map(tire => tire.Tyre);
+    const studdedData = studdedTires.map(tire => parseFloat(tire[dataType]));
+    const nonStuddedData = nonStuddedTires.map(tire => parseFloat(tire[dataType]));
+
+    if (barChart) {
+        barChart.destroy();
+    }
+
+    barChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [...studdedLabels, ...nonStuddedLabels],
+            datasets: [
+                {
+                    label: 'Studded Tires',
+                    data: [...studdedData, ...Array(nonStuddedLabels.length).fill(null)],
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Non-Studded Tires',
+                    data: [...Array(studdedLabels.length).fill(null), ...nonStuddedData],
+                    backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: `Tire Comparison - ${dataType}`
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 }
 
 function createRadarChart() {
